@@ -17,6 +17,8 @@ if (cashRegister.status === REGISTER_STATUS.insufficientFunds){
     return cashRegister;
     }
 
+cashRegister.change = getCustomersChange(changeNeeded,cid);
+
 if (changeNeeded > getTotalCashRegisterChange(cashRegister.change)){
     cashRegister.status = REGISTER_STATUS.insufficientFunds;
     cashRegister.change = [];
@@ -26,7 +28,6 @@ if (cashRegister.status === REGISTER_STATUS.closed){
     cashRegister.change = [...cid];
 }
 
-cashRegister.change = getCustomersChange(changeNeeded,cid);
 console.log(cashRegister);
 return cashRegister;
 }
@@ -95,6 +96,6 @@ function getTotalCashRegisterChange(changeInDrawer){
 }
 ///////////// get change from the cash register ////////////////
 
-checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05],
-["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55],
-["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], 
+["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20],
+["TWENTY", 60], ["ONE HUNDRED", 100]])
