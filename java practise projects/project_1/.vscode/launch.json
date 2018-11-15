@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Switches",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Switches",
+            "args": ""
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MainCar",
             "request": "launch",
             "cwd": "${workspaceFolder}",
