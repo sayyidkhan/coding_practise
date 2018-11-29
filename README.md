@@ -1,5 +1,7 @@
 # coding_practise
-to store coding_practise files inside
+This repository is to store the codes to practise with the programming language of my choice.
+This is for the purpose of my own learning.
+If you bump into this, there is nothing to audit or useful inside, except only my practise codes.
 
 ## this is my work inside
 
