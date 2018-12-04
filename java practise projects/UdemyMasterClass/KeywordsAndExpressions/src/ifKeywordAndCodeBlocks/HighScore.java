@@ -39,17 +39,27 @@ public class HighScore {
     }
 
     public static int calculateHighScorePosition(int score) {
-        if (score >= 1000) {
-            return 1;
-        } else if (score < 1000 && score >= 500) {
-            return 2;
+//        if (score >= 1000) {
+//            return 1;
+//        } else if (score >= 500) {
+//            return 2;
+//        }
+//        else if (score >= 100){
+//            return 3;
+//        }
+//
+//        return 4;
+        int position = 4; // assuming position 4 will be returned
+        if (score >= 1000){
+           position = 1;
         }
-        else if (score >= 100 && score < 500){
-            return 3;
+        else if (score >= 500){
+           position = 2;
         }
-        else {
-            return 4;
+        else if (score >= 100);{
+            position = 3;
         }
+        return position;
     }
 
     public static String positionOfUser(int score){
