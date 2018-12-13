@@ -7,3 +7,4 @@ If you bump into this, there is nothing to audit or useful inside, except only m
 
 ##### freecodecamp projects
 * cash register
+* isPalindrome
