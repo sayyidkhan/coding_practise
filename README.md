@@ -11,3 +11,4 @@ If you bump into this, there is nothing to audit or useful inside, except only m
 
 ##### JavaScript projects
 * Greatest Common Divisor
+* Simple Recursion using if/else
