@@ -1,4 +1,4 @@
-package tim.solution;
+package vipCustomer.me;
 
 public class Account {
 
@@ -7,6 +7,7 @@ public class Account {
     private String customerName;
     private String email;
     private int phoneNumber;
+
 
 
     public String getNumber() {
@@ -89,6 +90,12 @@ public class Account {
         System.out.println("Account Number: " + this.getBalance());
         System.out.println("Account Number: " + this.getPhoneNumber());
         System.out.println("Account Number: " + this.getEmail());
+    }
+
+    // you can create constructors using the "command" + "N", then selecting which parameters u want to build
+    // a constructor with
+    public Account(String customerName, String email, int phoneNumber) {
+        this("99999",100,customerName,email,phoneNumber); // this will call the main constructor
     }
 
 }
