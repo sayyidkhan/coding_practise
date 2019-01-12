@@ -15,7 +15,6 @@ public class Furniture {
     private String color;
 
 
-
     public String getFurnitureType() {
         return furnitureType;
     }
