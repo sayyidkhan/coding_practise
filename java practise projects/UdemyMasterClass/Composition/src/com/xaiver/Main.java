@@ -28,12 +28,14 @@ public class Main {
         2. call the method write pixels, to access the pixel method which is not available in the PC class
          */
 
-        // call the draw pixel class
-        thePC.getMonitor().drawPixelAt(1500,1200,"RED");
+//        // call the draw pixel class
+//        thePC.getMonitor().drawPixelAt(1500,1200,"RED");
+//
+//        // call the load program class
+//        thePC.getMotherboard().loadProgram("Windows 1.0");
+//        thePC.getTheCase().pressPowerButton();
 
-        // call the load program class
-        thePC.getMotherboard().loadProgram("Windows 1.0");
-        thePC.getTheCase().pressPowerButton();
+        thePC.powerUp(); // accessing private method through a public variable
 
     }
 }
