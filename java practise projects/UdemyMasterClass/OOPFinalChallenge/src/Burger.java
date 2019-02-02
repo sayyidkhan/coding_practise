@@ -24,10 +24,15 @@ public class Burger {
         this.meatType = meatType;
     }
 
+    protected void setBurgerPrice(double burgerPrice) {
+        this.burgerPrice = burgerPrice;
+    }
+
     private String burgerName;
     private String breadRollType;
     private String meatType;
-    private final double burgerPrice;
+
+    private double burgerPrice;
     private double totalBill;
 
     public trackAdditions getTrackAdditions() {
@@ -35,6 +40,10 @@ public class Burger {
     }
 
     private trackAdditions trackAdditions;
+
+    public void setMaxAdditionsValue(int value) {
+        this.trackAdditions.setTrackAdditionsMax(value);
+    }
 
     public Burger(String breadRollType, String meatType) {
         this("Normal Burger",breadRollType , meatType);
@@ -50,7 +59,6 @@ public class Burger {
     }
 
     public double getBurgerPrice() {
-        System.out.println("Normal Burger price : " + this.burgerPrice);
         return this.burgerPrice;
     }
 
@@ -62,10 +70,20 @@ public class Burger {
         this.totalBill = totalBill;
     }
 
+    public void getSubtotalAdditionPrice(){
+        System.out.println("subtotal price is " + this.trackAdditions.getTrackAdditionSum());
+    }
+
     public void addFoodItem(String foodItem, int amountOfItem){
-        this.trackAdditions.addItem(foodItem,amountOfItem); // add sum in trackAdditions
-        double subtotalAdditionAmount = this.trackAdditions.getTrackAdditionSum();
-        double sum = this.burgerPrice + subtotalAdditionAmount;
-        setTotalBill(sum);
+        if(foodItem == "carrot" || foodItem == "lettuce" || foodItem == "pickle" || foodItem == "cucumber" || foodItem == "tomato" || foodItem == "olives") {
+            this.trackAdditions.addItem(foodItem, amountOfItem); // add sum in trackAdditions
+            double subtotalAdditionAmount = this.trackAdditions.getTrackAdditionSum();
+            double sum = this.burgerPrice + subtotalAdditionAmount;
+            setTotalBill(sum);
+        }
+        else{
+            System.out.println("you have either entered an invalid item or an item not allowed for this combo");
+        }
+
     }
 }

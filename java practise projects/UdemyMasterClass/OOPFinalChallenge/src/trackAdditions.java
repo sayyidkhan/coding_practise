@@ -36,6 +36,16 @@ public class trackAdditions {
     private double olivesPrice = 0.10;
     private double cucumberPrice = 0.20;
     private double picklePrice = 0.30;
+    private double chipsPrice = 1;
+    private double drinkPrice = 1.2;
+
+    public double getChipsPrice() {
+        return chipsPrice;
+    }
+
+    public double getDrinkPrice() {
+        return drinkPrice;
+    }
 
     private int trackAdditionsLimit;
     private int trackAdditionsMax;
@@ -69,6 +79,12 @@ public class trackAdditions {
             if (foodItem == "pickle") {
                 sum += amountOfItem * picklePrice;
             }
+            if (foodItem == "chips") {
+                sum += amountOfItem * chipsPrice;
+            }
+            if (foodItem == "drink") {
+                sum += amountOfItem * drinkPrice;
+            }
             System.out.println("subtotal price for " + foodItem + " is : " + sum);
             addTrackAdditionSum(amountOfItem);
             this.trackAdditionSum += sum;
@@ -89,5 +105,9 @@ public class trackAdditions {
 
     public void setTrackAdditionSum(double trackAdditionSum) {
         this.trackAdditionSum = trackAdditionSum;
+    }
+
+    public void setTrackAdditionsMax(int trackAdditionsMax) {
+        this.trackAdditionsMax = trackAdditionsMax;
     }
 }
