@@ -1,8 +1,10 @@
+package original.work;
+
 public class DeluxeHamburger extends Burger{
 
     public DeluxeHamburger(String breadRollType, String meatType) {
         super(breadRollType, meatType);
-        setBurgerName("Deluxe Burger");
+        setBurgerName("Deluxe original.timbuchaka.work.Burger");
         setBurgerPrice(4.5);
         setMaxAdditionsValue(2);
     }
@@ -18,7 +20,7 @@ public class DeluxeHamburger extends Burger{
     @Override
     public void addFoodItem(String foodItem, int amountOfItem) {
         if(foodItem == "chips" || foodItem == "drink") {
-            getTrackAdditions().addItem(foodItem, amountOfItem); // add sum in trackAdditions
+            getTrackAdditions().addItem(foodItem, amountOfItem); // add sum in original.timbuchaka.work.trackAdditions
             double subtotalAdditionAmount = getTrackAdditions().getTrackAdditionSum();
             double sum = getBurgerPrice() + subtotalAdditionAmount;
             setTotalBill(sum);

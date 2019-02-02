@@ -1,3 +1,5 @@
+package original.work;
+
 public class Burger {
 
     public String getBurgerName() {
@@ -46,7 +48,7 @@ public class Burger {
     }
 
     public Burger(String breadRollType, String meatType) {
-        this("Normal Burger",breadRollType , meatType);
+        this("Normal original.timbuchaka.work.Burger",breadRollType , meatType);
     }
 
     private Burger(String burgerName, String breadRollType, String meatType) {
@@ -76,7 +78,7 @@ public class Burger {
 
     public void addFoodItem(String foodItem, int amountOfItem){
         if(foodItem == "carrot" || foodItem == "lettuce" || foodItem == "pickle" || foodItem == "cucumber" || foodItem == "tomato" || foodItem == "olives") {
-            this.trackAdditions.addItem(foodItem, amountOfItem); // add sum in trackAdditions
+            this.trackAdditions.addItem(foodItem, amountOfItem); // add sum in original.timbuchaka.work.trackAdditions
             double subtotalAdditionAmount = this.trackAdditions.getTrackAdditionSum();
             double sum = this.burgerPrice + subtotalAdditionAmount;
             setTotalBill(sum);

@@ -1,3 +1,5 @@
+package original.work;
+
 public class trackAdditions {
 
     public double getLettucePrice() {
