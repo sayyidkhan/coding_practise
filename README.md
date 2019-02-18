@@ -6,9 +6,15 @@ If you bump into this, there is nothing to audit or useful inside, except only m
 ## this is my work inside
 
 ##### freecodecamp projects
+
 * cash register
 * isPalindrome
 
 ##### JavaScript projects
+
 * Greatest Common Divisor
 * Simple Recursion using if/else
+
+##### NODE JS Projects
+
+* Faker.js & Chance.js
