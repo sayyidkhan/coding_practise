@@ -13,16 +13,7 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean queryName(String queryname, ArrayList listItems){
-        for(int i = 0; i < listItems.size(); i++ ) {
-            if(queryname == listItems.get(i)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private String getName() {
+    public String getName() {
         return name;
     }
 

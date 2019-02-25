@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         MobilePhone myMobile = new MobilePhone();
-        myMobile.contactListLength();
+        System.out.println(myMobile.contactListLength());
+        //myMobile.store("apple",12345);
 
     }
 
