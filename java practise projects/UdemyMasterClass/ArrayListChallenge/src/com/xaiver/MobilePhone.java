@@ -15,7 +15,6 @@ public class MobilePhone {
 
     public int contactListLength() {
         return this.contactList.size();
-
     }
 
     // does validation to check whether contact exists
@@ -26,18 +25,15 @@ public class MobilePhone {
         return false;
     }
 
-    //write function queryReturnObject when validation successful
-
     public void store(String contactName,int contactNumber){
         if(queryNameValidation(contactName)){
-            // if return true, means does not contain, accept
-            // if false, means does not contain, reject
+            // if return true, means does not contain contactName, accept
+            // if false, means does not contain contactName, reject
 
             // add a new contract into the person mobile phone
             this.contactList.add(new Contact(contactName, contactNumber));
             // prints out the success details
             System.out.println("Contact Name " + contactName + " & " + contactNumber + " have been added");
-
         }
         else{
             // prints out the fail to add into the contact book details
@@ -45,8 +41,25 @@ public class MobilePhone {
         }
     }
 
-    // use the queryReturnObject to return the value
-    public void searchContactName(){
+    public void searchContacts(String contactName){
+        Contact.printContact(contactName,this.contactList);
+    }
+
+    public void remove(String contactName){
+        if(!queryNameValidation(contactName)){
+            // if return true, does not have contactName, we want to reject
+            // if return false, means contact contains, we want to accept
+            int positionToRemoveNumber = Contact.validateObjectArrayIndex(contactName,this.contactList);
+            this.contactList.remove(positionToRemoveNumber);
+            System.out.println("Contact " + contactName + " have been removed.");
+        }
+        else{
+            System.out.println("Contact does not exist, unable to remove.");
+        }
+    }
+
+
+    public void modify(){
 
     }
 
