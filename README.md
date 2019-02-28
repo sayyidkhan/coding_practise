@@ -14,6 +14,7 @@ If you bump into this, there is nothing to audit or useful inside, except only m
 
 * Greatest Common Divisor
 * Simple Recursion using if/else
+* flatten array using Recursion using only if
 
 ##### NODE JS Projects
 
