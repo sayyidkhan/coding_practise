@@ -9,8 +9,7 @@ class MobilePhone {
     private ArrayList<Contact> contactList;
 
     MobilePhone() {
-        ArrayList<Contact> contactList = new ArrayList<Contact>();
-        this.contactList = contactList;
+        this.contactList = new ArrayList<Contact>();
         this.contactList.add(new Contact("apple",8765432));
     }
 
