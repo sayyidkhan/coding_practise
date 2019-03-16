@@ -31,16 +31,32 @@ public class Main {
         // e.g. check if exists, or does not exist, etc.
         // Think about where you are adding the code to perform certain actions
 
+        /*
         Customer jackson = new Customer("Jackson",25.02);
-        //jackson.readAllTransactions();
         jackson.addNewTransaction(30);
         jackson.addNewTransaction(20);
-        //jackson.getBankBalance();
         jackson.addNewTransaction(-10);
-        //jackson.getBankBalance();
         jackson.readAllTransactions();
+        jackson.getCurrentBalance();
+        */
 
-       // System.out.println();
+        /*
+        Branch branch1 = new Branch("branch1");
+        branch1.createNewCustomer("jackson",10.20);
+        branch1.createNewCustomer("nizam",20.10);
+        branch1.showAllCustomers();
+        branch1.searchForCustomer("jackson");
+        branch1.addNewTransaction("jackson",20.40);
+        */
+
+        Bank bank1 = new Bank("appleBank");
+        bank1.addNewBranch("samsungBank");
+        //bank1.showAllBranches();
+        //bank1.searchForBranch("jacksonbank");
+        bank1.searchForBranchObject("appleBank").createNewCustomer("jackson",20.20);
+        bank1.searchForBranchObject("appleBank").createNewCustomer("sally",50.20);
+
+        // need to move the create the customer into the bank file
 
     }
 

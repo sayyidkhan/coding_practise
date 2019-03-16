@@ -9,13 +9,20 @@ public class Customer {
     private double bankBalance;
 
     public String getCustomerName() {
-        System.out.println("Customer name: " + this.customerName);
         return customerName;
     }
 
-    private double getBankBalance() {
-        System.out.println("Current Balance is " + this.bankBalance);
+    public void printCustomerName() {
+        System.out.println("Customer name: " + this.customerName);
+    }
+
+    public double getCurrentBalance() {
+
         return bankBalance;
+    }
+
+    public void printCurrentBalance() {
+        System.out.println("Current Balance is " + this.bankBalance);
     }
 
     public Customer(String customerName,double newTransaction) {
