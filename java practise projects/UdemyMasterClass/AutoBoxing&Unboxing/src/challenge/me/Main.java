@@ -51,10 +51,15 @@ public class Main {
 
         Bank bank1 = new Bank("appleBank");
         bank1.addNewBranch("samsungBank");
-        //bank1.showAllBranches();
-        //bank1.searchForBranch("jacksonbank");
-        bank1.searchForBranchObject("appleBank").createNewCustomer("jackson",20.20);
-        bank1.searchForBranchObject("appleBank").createNewCustomer("sally",50.20);
+        bank1.addNewBranch("samsungBank");
+        bank1.showAllBranches();
+        bank1.searchForBranch("jacksonbank");
+        bank1.createNewCustomer("appleBank","jackson",20.20);
+        bank1.addNewTransaction("appleBank","jackson",50);
+        bank1.createNewCustomer("appleBank","zendaya",30.20);
+        bank1.addNewTransaction("appleBank","zendaya",60.5);
+        bank1.searchForCustomer("appleBank","bella");
+        bank1.showAllCustomers("appleBank");
 
         // need to move the create the customer into the bank file
 

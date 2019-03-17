@@ -55,4 +55,45 @@ public class Bank {
         }
     }
 
+    private void manageCustomer(String branchName,String transactionType,String customerName,double firstTransaction){
+        if(findBranch(branchName)){
+            if(transactionType.equals("createNewCustomer")) {
+                searchForBranchObject(branchName).createNewCustomer(customerName, firstTransaction);
+            }
+            else if(transactionType.equals("addTransaction")){
+                searchForBranchObject(branchName).addNewTransaction(customerName,firstTransaction);
+            }
+            else if(transactionType.equals("searchForCustomer")){
+                searchForBranchObject(branchName).searchForCustomer(customerName);
+            }
+            else if(transactionType.equals("showAllCustomers")){
+                searchForBranchObject(branchName).showAllCustomers();
+            }
+            else{
+                System.out.println("no transaction type selected");
+            }
+        }
+        else{
+            System.out.println("Branch " + branchName + "not found." );
+        }
+    }
+
+    public void createNewCustomer(String branchName,String customerName,double firstTransaction){
+        manageCustomer(branchName,"createNewCustomer",customerName,firstTransaction);
+    }
+
+    public void addNewTransaction(String branchName,String customerName,double firstTransaction){
+        manageCustomer(branchName,"addTransaction",customerName,firstTransaction);
+    }
+
+    public void searchForCustomer(String branchName,String customerName){
+        manageCustomer(branchName,"searchForCustomer",customerName,0);
+    }
+
+    public void showAllCustomers(String branchName){
+        manageCustomer(branchName,"showAllCustomers",null,0);
+    }
+
+
+
 }

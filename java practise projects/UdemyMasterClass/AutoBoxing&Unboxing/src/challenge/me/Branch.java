@@ -18,7 +18,7 @@ public class Branch {
 
     public void createNewCustomer(String customerName,Double firstTransaction){
         if(findCustomer(customerName)){
-            System.out.println("Customer name already exist");
+            System.out.println("Customer name " + customerName + " already exist");
         }
         else {
             this.Customers.add(new Customer(customerName.toLowerCase(), firstTransaction));
@@ -64,7 +64,7 @@ public class Branch {
             searchForCustomerObject(customerName).readAllTransactions();
         }
         else{
-            System.out.println("Customer does not exist");
+            System.out.println("Customer " + customerName + " does not exist");
         }
     }
 
