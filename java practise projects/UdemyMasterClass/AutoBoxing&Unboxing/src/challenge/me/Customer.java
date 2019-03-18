@@ -29,8 +29,7 @@ public class Customer {
 
         this.customerName = customerName;
         this.transactions = new ArrayList<Double>();
-        this.transactions.add(newTransaction);
-        updateBankBalance(newTransaction);
+        addNewTransaction(newTransaction);
     }
 
     private void updateBankBalance(double value){
