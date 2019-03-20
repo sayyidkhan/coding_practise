@@ -1,7 +1,5 @@
 package com.xaiver;
 
-import java.sql.Time;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -35,9 +33,34 @@ public class Main {
         duration.getDuration();
         */
 
+        /*
         Song song = new Song("music1",0,5,20);
         System.out.println(song.getTitle());
         System.out.println(song.getDuration());
+        */
+
+        Album album = new Album("Eminem");
+        album.addSongToAlbum("I'm not afraid",0,5,30);
+        album.addSongToAlbum("Remember the name",0,3,20);
+        album.addSongToAlbum("mocking bird",0,2,50);
+        album.addSongToAlbum("venom",0,4,35);
+
+        Album album2 = new Album("roy jones jr");
+        album2.addSongToAlbum("can't be touched",0,5,30);
+        album2.addSongToAlbum("rap god",0,3,20);
+        album2.addSongToAlbum("tears of the clown",0,2,50);
+        album2.addSongToAlbum("hayley",0,4,35);
+
+        System.out.println("----------------------------");
+
+        Playlist playlist = new Playlist();
+        playlist.addSongIntoPlayList(album,"I'm not afraid");
+        playlist.addSongIntoPlayList(album,"Remember the name");
+        playlist.addSongIntoPlayList(album2,"can't be touched");
+        playlist.addSongIntoPlayList(album2,"hayley");
+        playlist.addSongIntoPlayList(album,"venom");
+        playlist.Menu();
+
 
     }
 }
