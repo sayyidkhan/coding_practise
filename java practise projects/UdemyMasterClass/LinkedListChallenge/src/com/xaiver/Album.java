@@ -5,12 +5,11 @@ import java.util.ArrayList;
 public class Album {
 
     private String albumName;
+    private ArrayList<Song> listOfSongs;
 
     public ArrayList<Song> getListOfSongs() {
         return listOfSongs;
     }
-
-    private ArrayList<Song> listOfSongs;
 
     public Album(String albumName) {
         this.albumName = albumName;
@@ -19,6 +18,15 @@ public class Album {
 
     public String getAlbumName() {
         return albumName;
+    }
+
+    public Song getSong(String songName){
+        for(Song song : this.listOfSongs){
+            if(songName.equals(song.getTitle())){
+                return song;
+            }
+        }
+        return null;
     }
 
     public boolean findSong(String songName){
@@ -50,8 +58,5 @@ public class Album {
             System.out.println("--------------------------");
         }
     }
-
-    public void printSongInAlbum()
-
 
 }
