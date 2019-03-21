@@ -6,34 +6,34 @@ import java.util.Scanner;
 
 public class Playlist {
 
-    ArrayList<Album> playlist;
+    ArrayList<Song> playlist;
 
     public Playlist() {
-        this.playlist = new ArrayList<Album>();
+        this.playlist = new ArrayList<Song>();
     }
 
     public void addSongIntoPlayList(Album albumName,String songName){
         if(!albumName.findSong(songName)){
             // if song exist in the database return false
             // ! to inverse the solution so that will return true when song exist in playlist
-            this.playlist.add(albumName);
+            this.playlist.add(albumName.getSong(songName));
         }
     }
 
-    public void playCurrentSong(Album song){
-        return song.getAlbumName();
+    private boolean storeValidSong(Album albumName,String songName){
+        return !albumName.findSong(songName);
     }
 
     public void Menu(){
         Scanner scanner = new Scanner(System.in);
-        ListIterator<Album> songs = this.playlist.listIterator();
+        ListIterator<Song> song = this.playlist.listIterator();
         if(this.playlist.size() == 0){
             System.out.println("No song in the playlist.");
             System.out.println("--- playlist stopped playing ---");
             return;
         }
         else{
-            System.out.println("Now listening to : " + songs.next());
+            currentSongInfo(song.next());
             printMenu();
         }
 
@@ -47,17 +47,40 @@ public class Playlist {
                     quit = false;
                     break;
                 case 2:
-                    thePlaylist.next();
+                    if(song.hasNext()) {
+                        currentSongInfo(song.next());
+                    }
+                    else{
+                        System.out.println("--- end of the playlist ---");
+                    }
+                    break;
                 case 3:
-                    thePlaylist.previous();
+                    if(song.hasPrevious()){
+                        currentSongInfo(song.previous());
+                    }
+                    else{
+                        System.out.println("--- beginning of the playlist ---");
+                    }
+
+                    break;
                 case 4:
                     System.out.println("Replaying the current song.");
+                    break;
+                case 5:
+                    printMenu();
+                    break;
                 default:
                     System.out.println("you have clicked an invalid option, please select one of the options below");
                     printMenu();
                     break;
             }
         }
+    }
+
+    public void currentSongInfo(Song song){
+        System.out.println("Now listening to : ");
+        System.out.println(song.getTitle());
+        System.out.println(song.getDuration());
     }
 
     public void printMenu(){
@@ -69,3 +92,4 @@ public class Playlist {
     }
 
 }
+
