@@ -61,6 +61,7 @@ public class Main {
         playlist.addSongIntoPlayList(album,"venom");
         playlist.Menu();
 
+        // need to finish writing the "replaying the current song"
 
     }
 }

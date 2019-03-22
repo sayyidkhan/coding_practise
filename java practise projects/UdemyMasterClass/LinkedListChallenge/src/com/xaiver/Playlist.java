@@ -24,9 +24,13 @@ public class Playlist {
         return !albumName.findSong(songName);
     }
 
-    public void Menu(){
+    public void Menu() {
         Scanner scanner = new Scanner(System.in);
+        boolean quit = true;
+        boolean goingForward = true;
+        boolean replay = false;
         ListIterator<Song> song = this.playlist.listIterator();
+
         if(this.playlist.size() == 0){
             System.out.println("No song in the playlist.");
             System.out.println("--- playlist stopped playing ---");
@@ -37,7 +41,7 @@ public class Playlist {
             printMenu();
         }
 
-        boolean quit = true;
+
         while(quit){
             int state = scanner.nextInt();
             scanner.nextLine();
@@ -47,25 +51,45 @@ public class Playlist {
                     quit = false;
                     break;
                 case 2:
+                    if(!goingForward){
+                        if(song.hasNext()){
+                            song.next();
+                        }
+                        goingForward = true;
+                    }
+
                     if(song.hasNext()) {
                         currentSongInfo(song.next());
                     }
                     else{
                         System.out.println("--- end of the playlist ---");
+                        goingForward = false;
                     }
                     break;
                 case 3:
-                    if(song.hasPrevious()){
-                        currentSongInfo(song.previous());
-                    }
-                    else{
-                        System.out.println("--- beginning of the playlist ---");
+                    if(goingForward){
+                        if(song.hasPrevious()) {
+                            song.previous();
+                        }
+                        goingForward = false;
                     }
 
+                    if(song.hasPrevious()) {
+                        currentSongInfo(song.previous());
+                    }
+                    else {
+                        System.out.println("--- beginning of the playlist ---");
+                        goingForward = true;
+                    }
                     break;
                 case 4:
                     System.out.println("Replaying the current song.");
-                    break;
+                    if(goingForward) {
+                        currentSongInfo(song.previous());
+                    }
+                    else{
+                        currentSongInfo(song.next());
+                    }
                 case 5:
                     printMenu();
                     break;
@@ -77,7 +101,7 @@ public class Playlist {
         }
     }
 
-    public void currentSongInfo(Song song){
+    public void currentSongInfo(Song song) {
         System.out.println("Now listening to : ");
         System.out.println(song.getTitle());
         System.out.println(song.getDuration());
