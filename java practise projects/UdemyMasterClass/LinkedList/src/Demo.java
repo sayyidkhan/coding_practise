@@ -85,12 +85,13 @@ public class Demo {
                         }
                         goingForward = true;
                     }
-                    if(listIterator.hasNext()){
-                        System.out.println("Now visiting " + listIterator.next());
-                    }else{
-                        System.out.println("Reached the end of the list.");
-                        goingForward = false;
-                    }
+                        if(listIterator.hasNext()){
+                            System.out.println("Now visiting " + listIterator.next());
+                        }
+                        else{
+                            System.out.println("Reached the end of the list.");
+                            goingForward = false;
+                        }
                     break;
                 case 2:
                     if(goingForward){
@@ -99,12 +100,13 @@ public class Demo {
                         }
                         goingForward = false;
                     }
-                    if(listIterator.hasPrevious()){
-                        System.out.println("Now visiting " + listIterator.previous());
-                    }else{
-                        System.out.println("We are at the start of the list");
-                        goingForward = true;
-                    }
+                        if(listIterator.hasPrevious()){
+                            System.out.println("Now visiting " + listIterator.previous());
+                        }
+                        else{
+                            System.out.println("We are at the start of the list");
+                            goingForward = true;
+                        }
                     break;
                 case 3:
                     printMenu();

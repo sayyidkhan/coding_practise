@@ -24,11 +24,12 @@ public class Playlist {
         return !albumName.findSong(songName);
     }
 
-    public void Menu() {
+    public void Menu() throws CloneNotSupportedException {
         Scanner scanner = new Scanner(System.in);
         boolean quit = true;
         boolean goingForward = true;
-        boolean replay = false;
+        boolean replaySong = false;
+        Song storeReplaySong = null;
         ListIterator<Song> song = this.playlist.listIterator();
 
         if(this.playlist.size() == 0){
@@ -51,6 +52,7 @@ public class Playlist {
                     quit = false;
                     break;
                 case 2:
+                    replaySong = false; // to reset the replay song
                     if(!goingForward){
                         if(song.hasNext()){
                             song.next();
@@ -67,6 +69,7 @@ public class Playlist {
                     }
                     break;
                 case 3:
+                    replaySong = false; // to reset the replay song
                     if(goingForward){
                         if(song.hasPrevious()) {
                             song.previous();
@@ -84,12 +87,39 @@ public class Playlist {
                     break;
                 case 4:
                     System.out.println("Replaying the current song.");
-                    if(goingForward) {
-                        currentSongInfo(song.previous());
+                    Song currentPlayingSong;
+                    if(replaySong) {
+                        // replays the songs as many times until song goes to next or previous
+                        currentSongInfo(storeReplaySong);
                     }
                     else{
-                        currentSongInfo(song.next());
+                        // if first time enter into this loop
+                        if (goingForward) {
+                            if(song.hasPrevious()) {
+                                currentPlayingSong = song.previous();
+                                storeReplaySong = (Song) currentPlayingSong.clone();
+                                currentSongInfo(currentPlayingSong);
+                                replaySong = true;
+                            }
+                            else{
+                                System.out.println("--- no song replayed, you are either at the end or start " +
+                                        "of the playlist ---");
+                            }
+                        } else {
+                            if(song.hasNext()) {
+                                currentPlayingSong = song.next();
+                                storeReplaySong = (Song) currentPlayingSong.clone();
+                                currentSongInfo(currentPlayingSong);
+                                replaySong = true;
+                            }
+                            else{
+                                System.out.println("--- no song replayed, you are either at the end or start " +
+                                        "of the playlist ---");
+                            }
+                        }
+
                     }
+                    break;
                 case 5:
                     printMenu();
                     break;

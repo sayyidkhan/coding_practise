@@ -2,7 +2,7 @@ package com.xaiver;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         // Create a program that implements a playlist for songs
         // Create a Song class having Title and Duration for a song.
 
@@ -61,7 +61,7 @@ public class Main {
         playlist.addSongIntoPlayList(album,"venom");
         playlist.Menu();
 
-        // need to finish writing the "replaying the current song"
+        // need to finish to remove the current song
 
     }
 }
