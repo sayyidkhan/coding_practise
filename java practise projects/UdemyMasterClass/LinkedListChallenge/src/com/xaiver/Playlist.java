@@ -52,6 +52,11 @@ public class Playlist {
                     quit = false;
                     break;
                 case 2:
+                    // reset the song position //
+                    if(replaySong){
+                        song.next();
+                    }
+                    // reset the song position //
                     replaySong = false; // to reset the replay song
                     if(!goingForward){
                         if(song.hasNext()){
@@ -69,6 +74,11 @@ public class Playlist {
                     }
                     break;
                 case 3:
+                    // reset the song position //
+                    if(replaySong){
+                        song.previous();
+                    }
+                    // reset the song position //
                     replaySong = false; // to reset the replay song
                     if(goingForward){
                         if(song.hasPrevious()) {
