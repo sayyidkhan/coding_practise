@@ -131,6 +131,30 @@ public class Playlist {
                     }
                     break;
                 case 5:
+                    if(goingForward){
+                        if(song.hasNext()){
+                            // remove song
+                            song.remove();
+                            System.out.println("--- removed the current song ---");
+                        }
+                        else{
+                            // unable to remove song, show message
+                            System.out.println("unable to remove song, either you are at the start or end of the playlist");
+                        }
+                    }
+                    else{
+                        if(song.hasPrevious()){
+                            // remove song
+                            song.remove();
+                            System.out.println("--- removed the current song ---");
+                        }
+                        else{
+                            // unable to remove song, show message
+                            System.out.println("unable to remove song, either you are at the start or end of the playlist");
+                        }
+                    }
+                    break;
+                case 6:
                     printMenu();
                     break;
                 default:
@@ -152,7 +176,8 @@ public class Playlist {
                 "2.Skip forward to the next song,\n" +
                 "3.skip backwards to a previous song.\n" +
                 "4.Replay the current song.\n" +
-                "5.List the songs in the playlist");
+                "5.Remove the current song from playlist.\n" +
+                "6.display the menu again");
     }
 
 }
