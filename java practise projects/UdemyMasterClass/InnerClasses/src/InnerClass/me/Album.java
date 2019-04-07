@@ -16,7 +16,7 @@ public class Album {
     }
 
     public boolean addSong(String title, int hour, int minute, int seconds){
-        return this.listOfSongs.addSong_SongList(title,hour,minute,seconds);
+        return this.listOfSongs.add(title,hour,minute,seconds);
     }
 
     public boolean addToPlaylist(int trackNumber, LinkedList<Song> playlist){
@@ -30,7 +30,7 @@ public class Album {
     }
 
     public boolean addToPlaylist(String title, LinkedList<Song> playlist){
-        Song checkedSong = listOfSongs.findSong_SongList(title);
+        Song checkedSong = listOfSongs.findSong(title);
         if(checkedSong != null){
             playlist.add(checkedSong);
             return true;
@@ -40,7 +40,7 @@ public class Album {
     }
 
     /////////////////////////// inner class ////////////////////////////
-    public static class SongList{
+    class SongList{
 
         private ArrayList<Song> songList;
 
@@ -52,15 +52,15 @@ public class Album {
             return songList;
         }
 
-        public boolean addSong_SongList(String title, int hour, int minute, int seconds){
-            if(findSong_SongList(title) == null){
+        public boolean add(String title, int hour, int minute, int seconds){
+            if(findSong(title) == null){
                 this.songList.add(new Song(title,hour,minute,seconds));
                 return true;
             }
             return false;
         }
 
-        private Song findSong_SongList(String songName){
+        private Song findSong(String songName){
             for(Song checkedSong : this.songList){
                 if(songName.equals(checkedSong.getTitle())){
                     return checkedSong;
