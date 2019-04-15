@@ -23,4 +23,9 @@ public abstract class Team {
         this.totalScore = totalScore;
     }
 
+    public String printTeamInfo(){
+        String finalValue = "Team Name: " + getTeamName() + " Score: " + getTotalScore();
+        return finalValue;
+    }
+
 }
