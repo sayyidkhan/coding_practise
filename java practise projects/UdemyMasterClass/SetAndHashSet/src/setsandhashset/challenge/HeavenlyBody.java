@@ -1,4 +1,4 @@
-package com.me;
+package setsandhashset.challenge;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -11,16 +11,21 @@ public final class HeavenlyBody {
     private final String name;
     private final double orbitalPeriod;
     private final Set<HeavenlyBody> satellite;
+    private final String bodyField;
 
+    public HeavenlyBody(String name, double orbitalPeriod,String bodyField) {
 
-    public HeavenlyBody(String name, double orbitalPeriod) {
         this.name = name;
         this.orbitalPeriod = orbitalPeriod;
         this.satellite = new HashSet<>();
+        this.bodyField = bodyField;
 
     }
 
-
+    @Contract(pure = true)
+    public String getBodyField() {
+        return bodyField;
+    }
 
     @Contract(pure = true)
     public String getName() {
@@ -44,7 +49,7 @@ public final class HeavenlyBody {
 
     // we need to override the existing equals method
     // in order to take advantage
-    // press windows + n to overides the equal method
+    // press windows + n to overrides the equal method
     @Contract(value = "null -> false", pure = true)
     @Override
     public boolean equals(Object obj){
@@ -57,7 +62,7 @@ public final class HeavenlyBody {
         System.out.println("obj.getClass() is " + obj.getClass());
         System.out.println("this.getClass() is " + this.getClass());
         if((obj == null) || ( obj.getClass() != this.getClass() ) ){ // obj.getClass() != this.getClass()
-                                                                     // just compares that they are not the same
+            // just compares that they are not the same
             System.out.println("unable to add object does not share the same hashcode");
             return false; // to return false because they are not the same class Object
         }
