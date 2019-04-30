@@ -18,7 +18,16 @@ public final class HeavenlyBody {
         this.name = name;
         this.orbitalPeriod = orbitalPeriod;
         this.satellite = new HashSet<>();
-        this.bodyField = bodyField;
+        while(true){
+            bodyField = bodyField.toLowerCase();
+            if(bodyField == "star" || bodyField == "planet" || bodyField == "moon"){
+                this.bodyField = bodyField;
+                break;
+            }
+            System.out.println("You entered an invalid field, please choose: ");
+            System.out.println("star, planet, moon");
+        }
+
 
     }
 
@@ -77,7 +86,7 @@ public final class HeavenlyBody {
     @Override
     public int hashCode() {
         int hashCodeVal = this.name.hashCode()  + 57;
-        System.out.println("hashcode called " + (hashCodeVal));
+        // System.out.println("hashcode called " + (hashCodeVal));
         return hashCodeVal; // a number is added so that a non-zero number is returned
     }
 
