@@ -1,4 +1,4 @@
-package com.me;
+package com.tim;
 
 public class StockItem implements Comparable<StockItem> {
 
