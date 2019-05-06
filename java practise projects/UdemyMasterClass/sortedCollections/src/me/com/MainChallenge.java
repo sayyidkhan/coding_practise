@@ -20,18 +20,15 @@ public class MainChallenge {
     The stock count for each item is reduced when a basket is checked out, at which
     point all reserved items in the basket have their actual stock count reduced.
 
-
-
     Once checkout is complete, the contents of the basket are cleared.
-
-    //////////////////////////////////////////////////////////////////////////////
-    (do tomorrow)
 
     It should also be possible to "unreserve" items that were added to the basket
     by mistake.
 
     The program should prevent any attempt to unreserve more items than were
     reserved for a basket.
+
+    //////////////////////////////////////////////////////////////////////////////
 
     Add code to Main that will unreserve items after they have been added to the basket,
     as well as unreserving items that have not been added to make sure that the code

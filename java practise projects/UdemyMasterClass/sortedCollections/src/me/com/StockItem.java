@@ -41,12 +41,18 @@ public class StockItem implements Comparable<StockItem> {
         }
     }
 
-    public void reserveStock(int quantity){
-        if(quantity > 0){
-            int quantityCheck = this.quantityStock - this.reserved - quantity;
-            if(quantityCheck >= 0) {
-                this.reserved += quantity;
-            }
+    public int reserveStock(int quantity){
+        int quantityCheck = this.quantityStock - this.reserved - quantity;
+        if((quantity > 0) && (quantityCheck >= 0)) {
+            this.reserved += quantity;
+            return quantity;
+        }
+        return 0;
+    }
+
+    public void unreserveStock(int quantity) {
+        if((this.reserved > 0) && (this.reserved - quantity >= 0)){
+            this.reserved -= quantity;
         }
     }
 
