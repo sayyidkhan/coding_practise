@@ -17,8 +17,8 @@ public class MainChallenge {
 
 
 
-    The stock count for each item is reduced when a basket is checked out, at which
-    point all reserved items in the basket have their actual stock count reduced.
+    The stock count for each item is reduced when a basket is checked out,
+    at which point all reserved items in the basket have their actual stock count reduced.
 
     Once checkout is complete, the contents of the basket are cleared.
 

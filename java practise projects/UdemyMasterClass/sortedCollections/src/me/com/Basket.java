@@ -17,6 +17,7 @@ public class Basket {
     public int addToBasket(StockItem item, int quantity){
         if((item != null) && (quantity > 0)){
             int inBasket  = list.getOrDefault(item,0);
+            System.out.println(inBasket);
             list.put(item,inBasket + quantity);
             return inBasket;
         }

@@ -29,8 +29,12 @@ public class Main {
         */
 
         Basket timsBasket = new Basket("Tim");
-        sellItem(timsBasket,"car",1);
+        sellItem(timsBasket,"car",2);
         System.out.println(timsBasket);
+
+        System.out.println();
+        System.out.println(stockList);
+
         /*
         if(sellItem(timsBasket,"car",1) != 1){
             System.out.println("There are no more cars in stock");
@@ -60,6 +64,7 @@ public class Main {
             System.out.println(price.getKey() + " cost " + price.getValue());
         }
         */
+
     }
 
     public static int sellItem(Basket basket, String item, int quantity) {
@@ -85,15 +90,25 @@ public class Main {
             return 0;
         }
 
-        if((quantity > 0) && (stockItem != null)){
-            stockItem.reserveStock(quantity);
+        if(stockItem.reserveStock(quantity) > 0){
+            System.out.println("Stock " + item + " reserved successfully.");
+            // the stockitem is stored in the basket, with the reserved still monitored
+            basket.addToBasket(stockItem, 0);
             return quantity;
+        }
+        else{
+            System.out.println("Unable to reserve Stock " + item);
         }
 
         return 0;
     }
 
     // need to do unreserveItem
+    public static int unreserveItem(Basket basket, String item, int quantity){
+        // retrieve the item from the basket
+        //  StockItem stockItemFromBasket = basket.Items().getOrDefault(item);
+        return 0;
+    }
 
 
     public static void addStock2StockList(String name,double price,int quantity){
