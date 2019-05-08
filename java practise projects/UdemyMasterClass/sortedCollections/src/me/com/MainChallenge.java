@@ -28,14 +28,16 @@ public class MainChallenge {
     The program should prevent any attempt to unreserve more items than were
     reserved for a basket.
 
-    //////////////////////////////////////////////////////////////////////////////
-
     Add code to Main that will unreserve items after they have been added to the basket,
     as well as unreserving items that have not been added to make sure that the code
     can cope with invalid requests like that.
 
     After checking out the baskets, display the full stock list and the contents of each
     basket that you created.
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    test the application!!
     */
 
 }

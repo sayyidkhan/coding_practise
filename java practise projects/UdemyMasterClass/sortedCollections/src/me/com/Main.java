@@ -29,7 +29,9 @@ public class Main {
         */
 
         Basket timsBasket = new Basket("Tim");
-        sellItem(timsBasket,"car",2);
+        reserveItem(timsBasket,"car",1);
+        reserveItem(timsBasket,"car",1);
+        reserveItem(timsBasket,"car",1);
         System.out.println(timsBasket);
 
         System.out.println();
@@ -93,7 +95,7 @@ public class Main {
         if(stockItem.reserveStock(quantity) > 0){
             System.out.println("Stock " + item + " reserved successfully.");
             // the stockitem is stored in the basket, with the reserved still monitored
-            basket.addToBasket(stockItem, 0);
+            basket.reserveToBasket(stockItem, quantity);
             return quantity;
         }
         else{
@@ -103,10 +105,25 @@ public class Main {
         return 0;
     }
 
-    // need to do unreserveItem
     public static int unreserveItem(Basket basket, String item, int quantity){
         // retrieve the item from the basket
-        //  StockItem stockItemFromBasket = basket.Items().getOrDefault(item);
+        Map.Entry<StockItem, Integer> reservedStockItemInBasket = basket.checkItem(item);
+        if(reservedStockItemInBasket.getKey() == null){
+            System.out.println("Unable to unreserve item.");
+            System.out.println("stock " + item + " does not exist.");
+            return 0;
+        }
+
+        if(reservedStockItemInBasket.getValue() > 0){
+            System.out.println("Stock " + item + " unreserved successfully.");
+            // the stockitem is stored in the basket, with the reserved still monitored
+            basket.unreserveFromBasket( reservedStockItemInBasket.getKey() , quantity );
+            return quantity;
+        }
+        else{
+            System.out.println("Unable to reserve Stock " + item);
+        }
+
         return 0;
     }
 

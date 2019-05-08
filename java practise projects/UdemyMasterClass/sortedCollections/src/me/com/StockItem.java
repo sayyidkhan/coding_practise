@@ -31,7 +31,7 @@ public class StockItem implements Comparable<StockItem> {
         return price;
     }
 
-    public int QuantityInStock() {
+    public int getQuantityInStock() {
         return quantityStock;
     }
 
