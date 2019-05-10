@@ -16,7 +16,20 @@ public class Basket {
         this.reservedList = new TreeMap<>();
     }
 
-    public int addToBasket(StockItem item, int quantity){
+    public void addToBasket(){
+        for(Map.Entry<StockItem, Integer> stockItem : reservedList.entrySet() ) {
+
+            StockItem theStockObject = stockItem.getKey();
+            Integer theStockReservedQuantity = stockItem.getValue();
+
+            if(Items().get(theStockObject) != 0){
+                addIndividualItemToBasket(theStockObject,theStockReservedQuantity);
+            }
+
+        }
+    }
+
+    private int addIndividualItemToBasket(StockItem item, int quantity){
         if((item != null) && (quantity > 0)){
             int inBasket  = list.getOrDefault(item,0);
             //System.out.println(inBasket);
@@ -41,11 +54,10 @@ public class Basket {
 
         int inReservedListBasket  = reservedList.getOrDefault(item,0);
         if((item != null) && (quantity > 0) && (inReservedListBasket > 0)) {
-
             int reservedItemBalance = inReservedListBasket - quantity;
-            reservedList.put(item,reservedItemBalance);
+            reservedList.put(item,reservedItemBalance); // return the balance quantity
             //System.out.println(inReservedListBasket);
-             item.unreserveStock(item.getReserved() - quantity);
+             item.unreserveStock(quantity); // unreserve the amount
 
             if(reservedItemBalance == 0){
                 reservedList.keySet().removeIf(key -> key.getName() == item.getName());

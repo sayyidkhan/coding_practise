@@ -30,26 +30,32 @@ public class Main {
 
         Basket timsBasket = new Basket("Tim");
         reserveItem(timsBasket,"car",1);
-        reserveItem(timsBasket,"car",1);
-        reserveItem(timsBasket,"car",1);
+        System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
+        reserveItem(timsBasket,"car",3);
+        System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
+
+        System.out.println();
+        // checkOutItem();
+        System.out.println();
+
         System.out.println(timsBasket);
 
         System.out.println();
         System.out.println(stockList);
 
         /*
-        if(sellItem(timsBasket,"car",1) != 1){
+        if(checkOutItem(timsBasket,"car",1) != 1){
             System.out.println("There are no more cars in stock");
         }
         System.out.println(timsBasket);
 
-        sellItem(timsBasket,"car",1);
-        sellItem(timsBasket,"spanner",5);
+        checkOutItem(timsBasket,"car",1);
+        checkOutItem(timsBasket,"spanner",5);
         System.out.println(timsBasket);
 
-        sellItem(timsBasket,"juice",4);
-        sellItem(timsBasket,"cup",12);
-        sellItem(timsBasket,"bread",1);
+        checkOutItem(timsBasket,"juice",4);
+        checkOutItem(timsBasket,"cup",12);
+        checkOutItem(timsBasket,"bread",1);
         System.out.println(timsBasket);
 
         System.out.println(stockList);
@@ -69,19 +75,17 @@ public class Main {
 
     }
 
-    public static int sellItem(Basket basket, String item, int quantity) {
-        // retrieve the item from the stock list
-        StockItem stockItem = stockList.get(item);
-        if (stockItem == null) {
-            System.out.println("We don't sell " + item);
-            return 0;
+    // need to do validation for the checkout item
+    // need to validate if there is any item to checkout, if no item throw error
+    public static void checkOutItem(Basket basket) {
+        // need to validate checkout...
+        boolean validateCheckout = true;
+        if (validateCheckout) {
+            basket.addToBasket();
         }
-
-        if (stockList.sellStock(item, quantity) != 0) {
-            basket.addToBasket(stockItem, quantity);
-            return quantity;
+        else{
+            System.out.println("unable to checkout");
         }
-        return 0;
     }
 
     public static int reserveItem(Basket basket, String item, int quantity){
@@ -100,6 +104,9 @@ public class Main {
         }
         else{
             System.out.println("Unable to reserve Stock " + item);
+            System.out.println("You are trying to reserve more than the current available stock");
+            System.out.println("Stock current quantity: " + stockItem.getQuantityInStock());
+            System.out.println("Available to be reserved quantity: " + (stockItem.getQuantityInStock() - stockItem.getReserved()) );
         }
 
         return 0;
@@ -108,7 +115,8 @@ public class Main {
     public static int unreserveItem(Basket basket, String item, int quantity){
         // retrieve the item from the basket
         Map.Entry<StockItem, Integer> reservedStockItemInBasket = basket.checkItem(item);
-        if(reservedStockItemInBasket.getKey() == null){
+
+        if( reservedStockItemInBasket == null || reservedStockItemInBasket.getKey() == null ){
             System.out.println("Unable to unreserve item.");
             System.out.println("stock " + item + " does not exist.");
             return 0;
