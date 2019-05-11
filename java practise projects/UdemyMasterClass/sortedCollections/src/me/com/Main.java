@@ -34,8 +34,11 @@ public class Main {
         reserveItem(timsBasket,"car",3);
         System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
 
+        reserveItem(timsBasket,"towel",10);
+        reserveItem(timsBasket,"vase",20);
+
         System.out.println();
-        // checkOutItem();
+        checkOutItem(timsBasket);
         System.out.println();
 
         System.out.println(timsBasket);
@@ -78,13 +81,12 @@ public class Main {
     // need to do validation for the checkout item
     // need to validate if there is any item to checkout, if no item throw error
     public static void checkOutItem(Basket basket) {
-        // need to validate checkout...
-        boolean validateCheckout = true;
-        if (validateCheckout) {
+        if (true) {
             basket.addToBasket();
+            System.out.println("Checkout successfully");
         }
         else{
-            System.out.println("unable to checkout");
+            System.out.println("Unable to checkout");
         }
     }
 
@@ -114,7 +116,7 @@ public class Main {
 
     public static int unreserveItem(Basket basket, String item, int quantity){
         // retrieve the item from the basket
-        Map.Entry<StockItem, Integer> reservedStockItemInBasket = basket.checkItem(item);
+        Map.Entry<StockItem, Integer> reservedStockItemInBasket = basket.checkItemInReservedList(item);
 
         if( reservedStockItemInBasket == null || reservedStockItemInBasket.getKey() == null ){
             System.out.println("Unable to unreserve item.");

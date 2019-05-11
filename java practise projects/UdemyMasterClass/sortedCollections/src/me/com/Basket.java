@@ -16,28 +16,44 @@ public class Basket {
         this.reservedList = new TreeMap<>();
     }
 
+//    public void addToBasket(StockList stockList){
+//
+//        boolean checkOutStatus = false;
+//
+//        for(Map.Entry<StockItem, Integer> stockItem : reservedList.entrySet() ) {
+//
+//            StockItem theStockObject = stockItem.getKey();
+//            Integer theStockReservedQuantity = stockItem.getValue();
+//
+////            if(stockList.get(theStockObject.getName()) != null) {
+////                System.out.println(true);
+////                addIndividualItemToBasket(theStockObject,theStockReservedQuantity);
+////                checkOutStatus = true;
+////            }
+//
+//        }
+//
+////        return checkOutStatus;
+//    }
+
     public void addToBasket(){
-        for(Map.Entry<StockItem, Integer> stockItem : reservedList.entrySet() ) {
+
+        for( Map.Entry<StockItem,Integer> stockItem : reservedList.entrySet() ){
 
             StockItem theStockObject = stockItem.getKey();
             Integer theStockReservedQuantity = stockItem.getValue();
+            System.out.println("thestockobject: " + theStockObject + ", theStockReservedQuantity: " + theStockReservedQuantity );
 
-            if(Items().get(theStockObject) != 0){
-                addIndividualItemToBasket(theStockObject,theStockReservedQuantity);
-            }
+            // put the item in the basket //
 
         }
-    }
 
-    private int addIndividualItemToBasket(StockItem item, int quantity){
-        if((item != null) && (quantity > 0)){
-            int inBasket  = list.getOrDefault(item,0);
-            //System.out.println(inBasket);
-            list.put(item,inBasket + quantity);
-            unreserveFromBasket(item,quantity);
-            return inBasket;
-        }
-        return 0;
+        //            int inBasket  = list.getOrDefault(item,0);
+        //            list.put(item,inBasket + quantity);
+        //            unreserveFromBasket(item,quantity);
+        //            return inBasket;
+        //        }
+        //        return 0;
     }
 
     public int reserveToBasket(StockItem item,int quantity){
@@ -69,7 +85,7 @@ public class Basket {
 
     }
 
-    public Map.Entry<StockItem, Integer> checkItem(String item){
+    public Map.Entry<StockItem, Integer> checkItemInReservedList(String item){
         for(Map.Entry<StockItem, Integer> stockItem : this.reservedList.entrySet() ){
             if(stockItem.getKey().getName() == item){
                 return stockItem;
@@ -77,6 +93,7 @@ public class Basket {
         }
         return null;
     }
+
 
     public Map<StockItem, Integer> Items(){
         return Collections.unmodifiableMap(list);
