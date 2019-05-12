@@ -41,7 +41,7 @@ public class Basket {
 
         }
 
-        reservedList = null; // clear the whole inventory
+        reservedList.clear(); // clear the whole inventory
 
         return true;
     }
