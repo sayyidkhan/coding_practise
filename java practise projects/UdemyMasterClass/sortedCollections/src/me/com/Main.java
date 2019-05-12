@@ -29,12 +29,15 @@ public class Main {
         */
 
         Basket timsBasket = new Basket("Tim");
-        reserveItem(timsBasket,"car",1);
+        reserveItem(timsBasket,"car",2);
         System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
         reserveItem(timsBasket,"car",3);
         System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
 
-        reserveItem(timsBasket,"towel",10);
+        unreserveItem(timsBasket,"car",1);
+        System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
+
+        reserveItem(timsBasket,"towel",20);
         reserveItem(timsBasket,"vase",20);
 
         System.out.println();
@@ -46,47 +49,51 @@ public class Main {
         System.out.println();
         System.out.println(stockList);
 
-        /*
-        if(checkOutItem(timsBasket,"car",1) != 1){
-            System.out.println("There are no more cars in stock");
-        }
-        System.out.println(timsBasket);
+        System.out.println("#######################");
 
-        checkOutItem(timsBasket,"car",1);
-        checkOutItem(timsBasket,"spanner",5);
-        System.out.println(timsBasket);
+        Basket jackBasket = new Basket("jack");
+        reserveItem(jackBasket,"car",1);
+        System.out.println(stockList.get("car").getReserved()); // check if the quantity have been reserved
 
-        checkOutItem(timsBasket,"juice",4);
-        checkOutItem(timsBasket,"cup",12);
-        checkOutItem(timsBasket,"bread",1);
-        System.out.println(timsBasket);
+        reserveItem(jackBasket,"bread",20);
+        System.out.println(stockList.get("bread").getReserved()); // check if the quantity have been reserved
+        reserveItem(jackBasket,"bread",20);
+        System.out.println(stockList.get("bread").getReserved()); // check if the quantity have been reserved
 
-        System.out.println(stockList);
+        // tries to reserve an item that does not exist
+        reserveItem(jackBasket,"cat",20);
 
-//        temp = new StockItem("pen",1.12);
-//        stockList.items().put(temp.getName(),temp);
 
-        stockList.items().get("car").adjustStock(2000);
-        stockList.get("car").adjustStock(-1000);
-        System.out.println(stockList);
+        // tries to unreserve an existing item
+        unreserveItem(jackBasket,"bread",15);
+        System.out.println(stockList.get("bread").getReserved()); // check if the quantity have been reserved
+
+//        for(Map.Entry<StockItem, Integer> s : jackBasket.reservedItems().entrySet()){
+//            if(s.getKey().getName() == "bread"){
+//                System.out.println("stockItem: " + s.getKey().getName() + ", reservedAmount: " + s.getValue());
+//            }
+//        }
 
         System.out.println();
-        for(Map.Entry<String,Double> price : stockList.PriceList().entrySet()){
-            System.out.println(price.getKey() + " cost " + price.getValue());
-        }
-        */
+        checkOutItem(jackBasket);
+        System.out.println();
+
+        System.out.println(jackBasket);
+
+        System.out.println();
+        System.out.println(stockList);
 
     }
 
     // need to do validation for the checkout item
     // need to validate if there is any item to checkout, if no item throw error
     public static void checkOutItem(Basket basket) {
-        if (true) {
-            basket.addToBasket();
+        if (basket.addToBasket(stockList)) {
             System.out.println("Checkout successfully");
         }
         else{
             System.out.println("Unable to checkout");
+            System.out.println("No item to checkout");
         }
     }
 

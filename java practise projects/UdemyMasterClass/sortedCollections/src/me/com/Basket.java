@@ -16,44 +16,34 @@ public class Basket {
         this.reservedList = new TreeMap<>();
     }
 
-//    public void addToBasket(StockList stockList){
-//
-//        boolean checkOutStatus = false;
-//
-//        for(Map.Entry<StockItem, Integer> stockItem : reservedList.entrySet() ) {
-//
-//            StockItem theStockObject = stockItem.getKey();
-//            Integer theStockReservedQuantity = stockItem.getValue();
-//
-////            if(stockList.get(theStockObject.getName()) != null) {
-////                System.out.println(true);
-////                addIndividualItemToBasket(theStockObject,theStockReservedQuantity);
-////                checkOutStatus = true;
-////            }
-//
-//        }
-//
-////        return checkOutStatus;
-//    }
+    public boolean addToBasket(StockList stockList){
 
-    public void addToBasket(){
+        // create validation here
+        if(checkTotalReservedAmount() == 0){
+            return false;
+        }
 
         for( Map.Entry<StockItem,Integer> stockItem : reservedList.entrySet() ){
 
             StockItem theStockObject = stockItem.getKey();
             Integer theStockReservedQuantity = stockItem.getValue();
-            System.out.println("thestockobject: " + theStockObject + ", theStockReservedQuantity: " + theStockReservedQuantity );
+            System.out.println( "thestockobject: " + theStockObject + ", theStockReservedQuantity: " + theStockReservedQuantity );
+
+            // reduce quantity in the stocklist //
+            stockList.sellStock(theStockObject.getName(),theStockReservedQuantity);
+
+            // reduce reservedQuantity in the stockItem
+            theStockObject.unreserveStock(theStockReservedQuantity);
 
             // put the item in the basket //
+            int inBasketQuantity  = list.getOrDefault(theStockObject,0);
+            list.put(theStockObject, theStockReservedQuantity + inBasketQuantity);
 
         }
 
-        //            int inBasket  = list.getOrDefault(item,0);
-        //            list.put(item,inBasket + quantity);
-        //            unreserveFromBasket(item,quantity);
-        //            return inBasket;
-        //        }
-        //        return 0;
+        reservedList = null; // clear the whole inventory
+
+        return true;
     }
 
     public int reserveToBasket(StockItem item,int quantity){
@@ -85,6 +75,7 @@ public class Basket {
 
     }
 
+
     public Map.Entry<StockItem, Integer> checkItemInReservedList(String item){
         for(Map.Entry<StockItem, Integer> stockItem : this.reservedList.entrySet() ){
             if(stockItem.getKey().getName() == item){
@@ -92,6 +83,22 @@ public class Basket {
             }
         }
         return null;
+    }
+
+    public int checkTotalReservedAmount(){
+        int totalReservedAmount = 0;
+        for(Map.Entry<StockItem, Integer> stockItem : this.reservedList.entrySet() ){
+            int reservedAmount = stockItem.getKey().getReserved();
+            if(reservedAmount != 0){
+                totalReservedAmount += reservedAmount;
+            }
+        }
+
+        return totalReservedAmount;
+    }
+
+    public Map<StockItem, Integer> reservedItems(){
+        return Collections.unmodifiableMap(reservedList);
     }
 
 
