@@ -75,7 +75,7 @@ public class Locations implements Map<Integer, Location> {
                     // second method of doing
                     String[] data = input.split(",");
                     int loc = Integer.parseInt(data[0]);
-                    String direction = data[1];
+                    String direction = data[1]; //
                     int destination = Integer.parseInt(data[2]);
 
                     System.out.println(loc + ": " + direction + ": " + destination);
