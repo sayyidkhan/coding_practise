@@ -71,18 +71,75 @@ public class Main {
         System.out.println("Challenge 7_2: " + challenge7_2.matches(regExp6)); // should return false
 
         // challenge 8
+        System.out.println();
+        System.out.println("challenge 8");
         String challenge8 = "abcd.135uvqz.7tzik.999";
-        String regExp7 = "(\\d+)(\\d{1,3})";
-        Pattern pattern2 = Pattern.compile(regExp7);
-        Matcher matcher2 = pattern2.matcher(challenge8);
+        Pattern pattern2 = Pattern.compile("[A-Za-z]+\\.(\\d+)");
+        Matcher matcher8 = pattern2.matcher(challenge8);
+
 
         int count = 0;
-        while(matcher2.find()){
+        while(matcher8.find()){
             count++;
-            System.out.println("count : " + count + ", value: " + matcher2.group(0));
+            System.out.println("count : " + count + ", value: " + matcher8.group(1));
         }
-          //
+
+        // challenge 9
+        System.out.println();
+        String challenge9 = "abcd.135\tuvqz.7\ttzik.999\n";
+        System.out.println("Challenge 9");
+        Pattern pattern9 = Pattern.compile("[A-Za-z]+\\.(\\d+)\\s");
+        Matcher matcher9 = pattern9.matcher(challenge9);
+        while (matcher9.find()){
+            System.out.println("Occurence: " + matcher9.group(1));
+        }
+
+        // challenge 10
+        System.out.println();
+        String challenge10 = "abcd.135\tuvqz.7\ttzik.999\n";
+        System.out.println("Challenge 10");
+        Pattern pattern10 = Pattern.compile("[A-Za-z]+\\.(\\d+)\\s");
+        Matcher matcher10 = pattern10.matcher(challenge9);
+        while (matcher10.find()){
+        System.out.println("Occurence: " + matcher10.start(1) + " end = " + (matcher10.end(1) - 1));
+        }
+
+        // challenge 11
+        System.out.println();
+        String challenge11 = "{0,2},{0,5},{1,3},{2,4}";
+        Pattern pattern11 = Pattern.compile("\\{(.+?)\\}");
+        Matcher matcher11 = pattern11.matcher(challenge11);
+        while (matcher11.find()){
+            System.out.println("Occurrence: " + matcher11.group(1));
+        }
+
+        System.out.println();
+        String challenge11a = "{0,2},{0,5},{1,3},{2,4},{x,y},{2,4},{11,12}";
+        Pattern pattern11a = Pattern.compile("\\{(.+?)\\}");
+          Matcher matcher11a = pattern11a.matcher(challenge11a);
+          while (matcher11a.find()){
+              System.out.println("Occurence: " + matcher11a.group(1));
+          }
 
 
-    }
+        // challenge 12
+        System.out.println();
+        String challenge12 = "11111";
+        String regExp12 =  "^\\d{5}$";
+        System.out.println("Challenge12: " + challenge12.matches(regExp12));
+
+        //challenge 13
+        System.out.println();
+        String challenge13 = "11111-1111";
+        int num = 4;
+        String regExp13 =  "^\\d{5}\\-\\d{" + num + "}$";
+        System.out.println("challenge13: " + challenge13.matches(regExp13));
+
+        //challenge14
+        System.out.println();
+        String regExp14 = ("^\\d{5}(-\\d{4})?$");
+        System.out.println("challenge14_1: " + challenge12.matches(regExp14));
+        System.out.println("challenge14_2: " + challenge12.matches(regExp14));
+
+      }
 }
