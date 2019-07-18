@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.Buffer;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -12,18 +14,43 @@ public class Main {
         try{
 
             URL url = new URL("http://example.org");
-            URLConnection urlConnection = url.openConnection();
-            urlConnection.setDoOutput(true);
-            urlConnection.connect();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent","Chrome");
+            connection.setReadTimeout(30000);
 
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            //
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response code: " + responseCode);
+
+            if(responseCode != 200){
+                System.out.println("error reading web page");
+                return;
+            }
+
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line = "";
-            while(line != null){
-                line = inputStream.readLine();
+
+            while((line = inputReader.readLine()) != null){
                 System.out.println(line);
             }
-            inputStream.close();
+
+//            urlConnection.setDoOutput(true);
+//            urlConnection.connect();
+//
+
+//
+//            Map<String, List<String>> headerFields = urlConnection.getHeaderFields();
+//            for(Map.Entry<String , List<String>> entry : headerFields.entrySet()){
+//                String key = entry.getKey();
+//                List<String> value = entry.getValue();
+//                System.out.println("-----key = " + key);
+//                for(String string: value){
+//                    System.out.println("value = " + value);
+//                }
+//            }
+
+
+//            inputStream.close();
 
         }
         catch (MalformedURLException e){
