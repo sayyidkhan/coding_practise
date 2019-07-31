@@ -3,6 +3,8 @@ package com.me;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -39,11 +41,22 @@ public class Main {
         Stream<String> ioNumberStream = Stream.of("I26","I17","I29","071");
         Stream<String> inNumberStream = Stream.of("N40","N36","I26");
         Stream<String> concatStream = Stream.concat(ioNumberStream,inNumberStream);
-        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");//
         System.out.println(concatStream
                 .distinct()
                 .peek(System.out::println) // pekk is usually used for debuging
                 .count());
+
+        System.out.println("------------------------");
+        List<String> sortedGNumbers = someBingoNumbers
+                .stream()
+                .map(String::toUpperCase)
+                .filter(s -> s.startsWith("G"))
+                .sorted()
+                .collect(ArrayList::new, ArrayList::add,ArrayList::addAll);
+
+
+
 
     }
 
