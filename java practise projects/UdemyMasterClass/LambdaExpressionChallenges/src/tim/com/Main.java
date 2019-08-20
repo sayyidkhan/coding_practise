@@ -1,8 +1,10 @@
 package tim.com;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Main {
 
@@ -30,7 +32,37 @@ public class Main {
         // challenge 3 - ans
         System.out.println(lambdaFunction.apply("1234567890"));
 
+        System.out.println("#############");
 
+        // challenge 6 - ans
+        Supplier<String> iLoveJava = () -> "I love Java!";
+
+        // challenge 7 - ans
+        String supplierResult = iLoveJava.get();
+        System.out.println(supplierResult);
+
+        // challenge 9
+        List<String> topNames2015 = Arrays.asList(
+                "Amelia",
+                "Olivia",
+                "emily",
+                "Isla",
+                "Ava",
+                "oliver",
+                "Jack",
+                "Charlie",
+                "harry",
+                "Jacob"
+        );
+
+        System.out.println("################");
+
+        //challenge 9
+        List<String> firstUpperCaseList = new ArrayList<>();
+        topNames2015.forEach(name ->
+                firstUpperCaseList.add(name.substring(0,1).toUpperCase() + name.substring(1)));
+        firstUpperCaseList.sort((s1,s2) -> s1.compareTo(s2));
+        firstUpperCaseList.forEach(s -> System.out.println(s));
 
     }
 
