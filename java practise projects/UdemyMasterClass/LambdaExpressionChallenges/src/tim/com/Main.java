@@ -59,8 +59,24 @@ public class Main {
         System.out.println("################");
 
         //challenge 9
-        List<String> firstUpperCaseList = topNames2015.stream().map(name -> name.substring(0, 1).toUpperCase() + name.substring(1)).sorted(String::compareTo).collect(Collectors.toList());
-        firstUpperCaseList.forEach(s -> System.out.println(s));
+//        List<String> firstUpperCaseList = topNames2015.stream().map(name -> name.substring(0, 1).toUpperCase() + name.substring(1)).sorted(String::compareTo).collect(Collectors.toList());
+//        firstUpperCaseList.forEach(System.out::println);
+
+        //challenge 11
+        topNames2015
+                .stream()
+                .map(name -> name.substring(0, 1).toUpperCase() + name.substring(1))
+                .sorted(String::compareTo)
+                .forEach(System.out::println);
+
+        //challenge 12
+        long namesbeginningwithA = topNames2015
+                .stream()
+                .map(name -> name.substring(0,1).toUpperCase() + name.substring(1))
+                .filter(name -> name.startsWith("A"))
+                .count();
+
+        System.out.println("number of names beginning with A is: " + namesbeginningwithA);
 
     }
 
