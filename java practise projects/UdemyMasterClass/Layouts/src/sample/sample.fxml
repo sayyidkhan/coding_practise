@@ -1,19 +1,33 @@
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
-<VBox fx:controller="sample.Controller"
-      xmlns:fx="http://javafx.com/fxml" >
-    <Button text="Button One"></Button>
-    <Button text="Button two"></Button>
-    <Button text="Button three"></Button>
-    <Button text="Button four"></Button>
-    <Button text="Button five"></Button>
-    <Button text="Button six"></Button>
-    <Button text="Button seven"></Button>
-    <Button text="Button eight"></Button>
-    <Button text="Button nine"></Button>
-    <Button text="Button ten"></Button>
-</VBox>
+<?import javafx.scene.control.Label?>
+<StackPane fx:controller="sample.Controller"
+           xmlns:fx="http://javafx.com/fxml" >
+    <Label text="the label text" style="-fx-background-color: green"/>
+    <Button text="Button One" style="-fx-background-color: green"/>
+    <Label text="the second label text" style="-fx-background-color: blue"/>
+
+</StackPane>
+
+<!--<?import javafx.scene.layout.FlowPane?>-->
+<!--<?import javafx.scene.control.Button?>-->
+<!--<?import javafx.scene.layout.VBox?>-->
+<!--<?import javafx.scene.layout.TilePane?>-->
+<!--<TilePane fx:controller="sample.Controller"-->
+          <!--xmlns:fx="http://javafx.com/fxml" >-->
+    <!--<Button text="Button One"></Button>-->
+    <!--<Button text="Button two"></Button>-->
+    <!--<Button text="Button three"></Button>-->
+    <!--<Button text="Button four"></Button>-->
+    <!--<Button text="Button five"></Button>-->
+    <!--<Button text="Button six"></Button>-->
+    <!--<Button text="Button seven"></Button>-->
+    <!--<Button text="Button eight"></Button>-->
+    <!--<Button text="Button nine"></Button>-->
+    <!--<Button text="Button ten"></Button>-->
+<!--</TilePane>-->
 
 
 <!--<?import javafx.geometry.Insets?>-->
