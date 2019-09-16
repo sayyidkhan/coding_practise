@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec69df86-7508-405e-94e4-5160d0fc71d2" name="Default Changelist" comment="doing the lambda expression challenge&#10;&#10;(cherry picked from commit e606ddacdfef0ca59babecbceac9cb4e92e53b51)&#10;&#10;# Conflicts:&#10;#&#9;java practise projects/UdemyMasterClass/LambdaExpressionChallenges/src/tim/com/Main.java">
+    <list default="true" id="ec69df86-7508-405e-94e4-5160d0fc71d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaNio/com/me/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaNio/com/me/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/me/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/me/Main.java" afterDir="false" />
     </list>
     <list id="d5d5b7c8-d7ee-4c5c-9772-775335bc9da2" name="doing the lambda expression challenge" comment="doing the lambda expression challenge&#10;&#10;(cherry picked from commit e606ddacdfef0ca59babecbceac9cb4e92e53b51)">
@@ -31,7 +30,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dat" value="5" />
+          <entry key="dat" value="6" />
           <entry key="java" value="2" />
           <entry key="txt" value="1" />
         </counts>
@@ -39,18 +38,18 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="2" />
-          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1924" />
+          <entry key="java" value="3335" />
           <entry key="txt" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1924" />
+          <entry key="JAVA" value="3335" />
           <entry key="PLAIN_TEXT" value="25" />
         </counts>
       </usages-collector>
@@ -61,19 +60,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/me/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+            <state relative-caret-position="750">
+              <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="24" selection-start-column="24" selection-end-column="24" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/datacopy.dat">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -141,7 +136,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568643418537" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568645904804" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -227,14 +222,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567434748300</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="doing the lambda expression challenge">
+      <created>1568643766227</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568643766227</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1014" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2603834" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2603834" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -242,9 +244,9 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3308026" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3308026" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -356,7 +358,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="doing the lambda expression challenge&#10;&#10;(cherry picked from commit e606ddacdfef0ca59babecbceac9cb4e92e53b51)&#10;&#10;# Conflicts:&#10;#&#9;java practise projects/UdemyMasterClass/LambdaExpressionChallenges/src/tim/com/Main.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="doing the lambda expression challenge&#10;&#10;(cherry picked from commit e606ddacdfef0ca59babecbceac9cb4e92e53b51)&#10;&#10;# Conflicts:&#10;#&#9;java practise projects/UdemyMasterClass/LambdaExpressionChallenges/src/tim/com/Main.java" />
+    <MESSAGE value="doing the lambda expression challenge" />
+    <option name="LAST_COMMIT_MESSAGE" value="doing the lambda expression challenge" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data.txt">
@@ -374,10 +377,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/datacopy.dat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/me/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        <state relative-caret-position="750">
+          <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
         </state>
       </provider>
     </entry>
