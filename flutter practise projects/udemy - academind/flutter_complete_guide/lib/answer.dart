@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+var dataArray = [const ["a","c"], "b"];
+
 class Answer extends StatelessWidget {
   final Function selectHandler;
   final String answerText;
