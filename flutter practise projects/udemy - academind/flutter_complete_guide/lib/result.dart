@@ -5,7 +5,7 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Center(
-      child: Text("You did it!");
+      child: Text("You did it!")
     );
   }
 }
