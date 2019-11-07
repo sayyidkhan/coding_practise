@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
-
-//void main() {
-//    runApp(MyApp());
-//}
+import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,47 +15,51 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  final questions = const [
+  final _questions = const [
     {
       'questionText' : 'what\'s your favourite color?',
-      'answers' : ['Black','Red','Green','White'],
+      'answers' : [
+        {'text':'Black','score': 10},
+        {'text':'red','score': 5},
+        {'text':'green','score': 3},
+        {'text':'white','score': 1},
+      ],
     },
     {
       'questionText' : 'what\'s your favourite animal?',
-      'answers' : ['Rabiit','Snake','Elephant','Lion'],
+      'answers' : [
+        {'text':'rabbit','score': 10},
+        {'text':'snake','score': 5},
+        {'text':'tiger','score': 3},
+        {'text':'lion','score': 1},
+      ],
     },
     {
       'questionText' : 'what\'s your favourite instructor?',
-      'answers' : ['Max1','Max2','Max3','Max4'],
+      'answers' : [
+        {'text':'max1','score': 1},
+        {'text':'max2','score': 1},
+        {'text':'max3','score': 1},
+        {'text':'max4','score': 1},
+      ],
     },
   ];
 
-  void _answerQuestion(){
+  void _answerQuestion(int score){
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       print("We Have more questions!");
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
-    var resultTrue =
-    Column(
-        children: [
-    Question( questions[_questionIndex]['questionText'] ),
-    ...(questions[_questionIndex]['answers'] as List<String>)
-        .map((answer) {
-    return Answer(_answerQuestion,answer);
-    }).toList()
-    ],);
-
-    var resultFalse =
-    Center(child: Text("You did it!"));
 
     return MaterialApp(
       home:
@@ -68,7 +68,14 @@ class _MyAppState extends State<MyApp> {
           title: Text("My First App"),
         ),
         body:
-        (_questionIndex < questions.length) ? resultTrue : resultFalse,
+        (_questionIndex < _questions.length) ?
+        Quiz(
+          answerQuestion: _answerQuestion,
+          questionIndex: _questionIndex,
+          questions: _questions,
+        )
+            :
+        Result(),
       ),
     );
   }
