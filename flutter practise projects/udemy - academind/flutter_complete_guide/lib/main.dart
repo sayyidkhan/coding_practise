@@ -47,15 +47,32 @@ class _MyAppState extends State<MyApp> {
     },
   ];
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _answerQuestion(int score){
     _totalScore += score;
+    String _currentScore = _totalScore.toString();
     setState(() {
       _questionIndex += 1;
     });
     print(_questionIndex);
+
     if (_questionIndex < _questions.length) {
+      print("your current score " + _currentScore);
       print("We Have more questions!");
     }
+    else if( identical(_questionIndex,_questions.length) ) {
+      print("your total score: " + _currentScore);
+    }
+    else{
+
+    }
+
   }
 
   @override
@@ -75,7 +92,7 @@ class _MyAppState extends State<MyApp> {
           questions: _questions,
         )
             :
-        Result(),
+        Result(_totalScore, _resetQuiz),
       ),
     );
   }
