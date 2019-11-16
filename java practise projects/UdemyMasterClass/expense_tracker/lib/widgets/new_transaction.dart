@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addTx;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransaction(this.addTx);
 
-  void submitData() {
-    var enteredTitle = titleController.text;
-    var enteredAmount = double.parse(amountController.text);
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
 
-    if(enteredTitle.isEmpty || enteredAmount <= 0){
-      print(enteredTitle);
-      print(enteredAmount);
-      addTx(enteredTitle,enteredAmount);
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
+
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
     }
 
+    widget.addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -32,20 +43,21 @@ class NewTransaction extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
               onSubmitted: (_) => submitData(),
-//                      onChanged: (val) => titleInput = val ,
+              // onChanged: (val) {
+              //   titleInput = val;
+              // },
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
+              keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData(),
-//                      onChanged: (val) => amountInput = val ,
+              // onChanged: (val) => amountInput = val,
             ),
             FlatButton(
               child: Text('Add Transaction'),
               textColor: Colors.purple,
-              onPressed: () {
-                addTx(titleController.text,double.parse(amountController.text));
-              },
+              onPressed: submitData,
             ),
           ],
         ),
