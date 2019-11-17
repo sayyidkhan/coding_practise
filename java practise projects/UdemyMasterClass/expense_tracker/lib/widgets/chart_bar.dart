@@ -3,10 +3,10 @@ import "package:flutter/material.dart";
 class ChartBar extends StatelessWidget {
   final String label;
   final double spendingAmount;
-  final double spedingPctOfTotal;
+  final double spendingPctOfTotal;
 
 
-  ChartBar(this.label, this.spendingAmount, this.spedingPctOfTotal);
+  ChartBar(this.label, this.spendingAmount, this.spendingPctOfTotal);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ChartBar extends StatelessWidget {
                 //borderRadius: BorderRadius.circular(20),
           ),
           FractionallySizedBox(
-            heightFactor: spedingPctOfTotal,
+            heightFactor: spendingPctOfTotal,
             child: Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor),
