@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_state_management/models/product.dart';
+import 'package:learning_state_management/providers/product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -37,9 +37,19 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  var _showFavoritesOnly = false;
+
+
   List<Product> get items {
+//    if(_showFavoritesOnly){
+//      return _items.where((prodItem) => prodItem.isFavourite).toList();
+//    }
     //spread operator, will do a deep copy
     return [..._items];
+  }
+
+  List<Product> get favoriteItems {
+    return _items.where((prodItem) => prodItem.isFavourite).toList();
   }
 
   void addProduct() {
@@ -50,6 +60,16 @@ class Products with ChangeNotifier {
   Product findById(String id){
     return _items.firstWhere((prod) => prod.id == id);
   }
+
+//  void showFavoritesOnly() {
+//    _showFavoritesOnly = true;
+//    notifyListeners();
+//  }
+//
+//  void showAll() {
+//    _showFavoritesOnly = false;
+//    notifyListeners();
+//  }
 
 
 }
