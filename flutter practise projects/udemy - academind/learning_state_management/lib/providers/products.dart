@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning_state_management/providers/product.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -53,7 +55,25 @@ class Products with ChangeNotifier {
   }
 
   void addProduct(Product product) {
-    final newProduct = Product(title: product.title, description: product.description, price: product.price, imageUrl:  product.imageUrl, id: DateTime.now().toString());
+    //firebase requires to end with .json
+    const url = "https://learning-flutter-1.firebaseio.com/products.json";
+    //sending http post request to firebase
+    http.post(url,body: json.encode({
+      "title": product.title,
+      "description": product.description,
+      "imageUrl":  product.imageUrl,
+      "price": product.price,
+      "isFavourite": product.isFavourite,
+    }),
+    );
+
+    final newProduct = Product(
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl:  product.imageUrl,
+        id: DateTime.now().toString()
+    );
     _items.add(newProduct);
     // _items.add(0, newProduct); to add it at the start of the list
     //_items.add(value);
