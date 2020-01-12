@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learning_state_management/providers/products.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/product.dart';
+import '../providers/products.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -25,10 +25,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
     imageUrl: '',
   );
   var _initValues = {
-    "title": "",
-    "description": "",
-    "price": "",
-    "imageUrl": "",
+    'title': '',
+    'description': '',
+    'price': '',
+    'imageUrl': '',
   };
   var _isInit = true;
   var _isLoading = false;
@@ -42,15 +42,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      final String productId = ModalRoute.of(context).settings.arguments;
+      final productId = ModalRoute.of(context).settings.arguments as String;
       if (productId != null) {
-        _editedProduct = Provider.of<Products>(context).findById(productId);
+        _editedProduct =
+            Provider.of<Products>(context, listen: false).findById(productId);
         _initValues = {
-          "title": _editedProduct.title,
-          "description": _editedProduct.description,
-          "price": _editedProduct.price.toString(),
-//          "imageUrl" : _editedProduct.imageUrl,
-          "imageUrl": "",
+          'title': _editedProduct.title,
+          'description': _editedProduct.description,
+          'price': _editedProduct.price.toString(),
+          // 'imageUrl': _editedProduct.imageUrl,
+          'imageUrl': '',
         };
         _imageUrlController.text = _editedProduct.imageUrl;
       }
@@ -72,7 +73,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void _updateImageUrl() {
     if (!_imageUrlFocusNode.hasFocus) {
       if ((!_imageUrlController.text.startsWith('http') &&
-          !_imageUrlController.text.startsWith('https'))) {
+              !_imageUrlController.text.startsWith('https')) ||
+          (!_imageUrlController.text.endsWith('.png') &&
+              !_imageUrlController.text.endsWith('.jpg') &&
+              !_imageUrlController.text.endsWith('.jpeg'))) {
         return;
       }
       setState(() {});
@@ -85,11 +89,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     _form.currentState.save();
-
     setState(() {
       _isLoading = true;
     });
-
     if (_editedProduct.id != null) {
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
@@ -97,37 +99,34 @@ class _EditProductScreenState extends State<EditProductScreen> {
         _isLoading = false;
       });
       Navigator.of(context).pop();
-    }
-    else {
-
-      try{
+    } else {
+      try {
         await Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
-      }
-      catch (error){
-        showDialog(
-            context: context,
-            builder: (ctx) => AlertDialog(
-              title: Text("An Error Occured!"),
-              content: Text("Something went wrong"),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("Okay"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ));
-      }
-      finally {
+      } catch (error) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text('An error occurred!'),
+            content: Text('Something went wrong.'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Okay'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
+        );
+      } finally {
         setState(() {
           _isLoading = false;
         });
         Navigator.of(context).pop();
       }
-
     }
+    // Navigator.of(context).pop();
   }
 
   @override
@@ -153,7 +152,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 child: ListView(
                   children: <Widget>[
                     TextFormField(
-                      initialValue: _initValues["title"],
+                      initialValue: _initValues['title'],
                       decoration: InputDecoration(labelText: 'Title'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
@@ -177,7 +176,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: _initValues["price"],
+                      initialValue: _initValues['price'],
                       decoration: InputDecoration(labelText: 'Price'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
@@ -210,7 +209,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                     ),
                     TextFormField(
-                      initialValue: _initValues["description"],
+                      initialValue: _initValues['description'],
                       decoration: InputDecoration(labelText: 'Description'),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -274,19 +273,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                               if (value.isEmpty) {
                                 return 'Please enter an image URL.';
                               }
-                              if (!value.startsWith("http") &&
+                              if (!value.startsWith('http') &&
                                   !value.startsWith('https')) {
-                                return "My Error";
+                                return 'Please enter a valid URL.';
                               }
-//                        if (!value.startsWith('http') ||
-//                            !value.startsWith('https')) {
-//                          return 'Please enter a valid URL.';
-//                        }
-//                        if (!value.endsWith('.png') &&
-//                            !value.endsWith('.jpg') &&
-//                            !value.endsWith('.jpeg')) {
-//                          return 'Please enter a valid image URL.';
-//                        }
+                              if (!value.endsWith('.png') &&
+                                  !value.endsWith('.jpg') &&
+                                  !value.endsWith('.jpeg')) {
+                                return 'Please enter a valid image URL.';
+                              }
                               return null;
                             },
                             onSaved: (value) {
