@@ -54,32 +54,37 @@ class Products with ChangeNotifier {
     return _items.where((prodItem) => prodItem.isFavourite).toList();
   }
 
-  Future<void> addProduct(Product product) {
+  // async will always return  a future
+  Future<void> addProduct(Product product) async {
     //firebase requires to end with .json
-    const url = "https://learning-flutter-1.firebaseio.com/products.json";
-    //sending http post request to firebase
-    return http.post(url,body: json.encode({
-      "title": product.title,
-      "description": product.description,
-      "imageUrl":  product.imageUrl,
-      "price": product.price,
-      "isFavourite": product.isFavourite,
-    }),
-    )
-    .then((response) {
+    const url = "https://learning-flutter-1.firebaseio.com/products";
+    try{
+      final response = await http.post(url,body: json.encode({
+        "title": product.title,
+        "description": product.description,
+        "imageUrl":  product.imageUrl,
+        "price": product.price,
+        "isFavourite": product.isFavourite,
+      }),
+      );
+
       print(json.decode(response.body));
       final newProduct = Product(
-          title: product.title,
-          description: product.description,
-          price: product.price,
-          imageUrl:  product.imageUrl,
-          id: json.decode(response.body)['name'],
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl:  product.imageUrl,
+        id: json.decode(response.body)['name'],
       );
       _items.add(newProduct);
       // _items.add(0, newProduct); to add it at the start of the list
       //_items.add(value);
       notifyListeners();
-    });
+    }
+    catch (error) {
+      print(error);
+      throw error;
+    }
 
   }
 
