@@ -72,4 +72,12 @@ class Auth with ChangeNotifier {
     return _autenticate(email,password,"signInWithPassword");
   }
 
+  void logout() {
+    print("user logged out successfully");
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
+    notifyListeners();
+  }
+
 }
