@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './screens/splash_screen.dart';
 import './screens/cart_screen.dart';
@@ -14,7 +15,10 @@ import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
 import './screens/auth_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  //SharedPreferences.setMockInitialValues({});
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
