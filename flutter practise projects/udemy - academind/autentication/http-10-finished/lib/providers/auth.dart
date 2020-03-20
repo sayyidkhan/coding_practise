@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
+
 import 'package:flutter/widgets.dart';
-import  'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/http_exception.dart';
@@ -20,10 +21,9 @@ class Auth with ChangeNotifier {
   }
 
   String get token {
-    if(_expiryDate != null &&
+    if (_expiryDate != null &&
         _expiryDate.isAfter(DateTime.now()) &&
-       _token != null
-    ){
+        _token != null) {
       return _token;
     }
     return null;
@@ -60,10 +60,11 @@ class Auth with ChangeNotifier {
       //presist data into device
       final prefs = await SharedPreferences.getInstance();
       final userData = json.encode(
-          {'token': _token,
-            'userId' : _userId,
-            'expiryDate' : _expiryDate.toIso8601String()
-          },
+        {
+          'token': _token,
+          'userId': _userId,
+          'expiryDate': _expiryDate.toIso8601String(),
+        },
       );
       prefs.setString('userData', userData);
     }
@@ -123,8 +124,7 @@ class Auth with ChangeNotifier {
       //cancel existing timers if available
       _authTimer.cancel();
     }
-    final timeNow = DateTime.now();
-    final timeToExpiry = _expiryDate.difference(timeNow).inSeconds;
+    final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
     _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   }
 

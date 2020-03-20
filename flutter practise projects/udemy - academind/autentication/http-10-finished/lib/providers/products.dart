@@ -45,7 +45,7 @@ class Products with ChangeNotifier {
   final String authToken;
   final String userId;
 
-  Products(this.authToken,this.userId,this._items);
+  Products(this.authToken, this.userId, this._items);
 
   List<Product> get items {
     // if (_showFavoritesOnly) {
@@ -113,7 +113,7 @@ class Products with ChangeNotifier {
           'description': product.description,
           'imageUrl': product.imageUrl,
           'price': product.price,
-          'creatorId' : userId,
+          'creatorId': userId,
         }),
       );
       final newProduct = Product(
