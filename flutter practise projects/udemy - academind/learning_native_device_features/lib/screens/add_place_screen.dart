@@ -1,20 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:learning_native_device_features/widgets/image_input.dart';
 
-class PlacesListScreen extends StatelessWidget {
+class AddPlaceScreen extends StatefulWidget {
+  static const routeName = '/add-place';
+
+  @override
+  _AddPlaceScreenState createState() => _AddPlaceScreenState();
+}
+
+class _AddPlaceScreenState extends State<AddPlaceScreen> {
+  final _titleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Places"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {},
-          )
-        ],
+        title: Text("Add a New Place"),
       ),
-      body: Center(
-        child: CircularProgressIndicator(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(labelText: "Title"),
+                        controller: _titleController,
+                      ),
+                      SizedBox(height: 10,),
+                      ImageInput(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          RaisedButton.icon(
+              onPressed: () {
+              },
+              icon: Icon(Icons.add),
+              label: Text("Add Place"),
+            elevation: 0,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            color: Theme.of(context).accentColor,
+          ),
+        ],
       ),
     );
   }
