@@ -13,9 +13,9 @@ class GreatPlaces with ChangeNotifier {
   }
 
   void addPlace(
-      String pickedTitle,
-      File pickedImage,
-      ) {
+    String pickedTitle,
+    File pickedImage,
+  ) {
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
@@ -24,10 +24,24 @@ class GreatPlaces with ChangeNotifier {
     );
     _items.add(newPlace);
     notifyListeners();
-    DBHelper.insert('places', {
+    DBHelper.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
     });
   }
+
+  Future<void> fetchAndSetPlaces() async {
+    final dataList = await DBHelper.getData('user_places');
+    dataList
+        .map((item) => Place(
+              id: item['id'],
+              title: item['title'],
+              image: File(item['image']),
+              location: null,
+            ))
+        .toList();
+    notifyListeners();
+  }
+
 }
