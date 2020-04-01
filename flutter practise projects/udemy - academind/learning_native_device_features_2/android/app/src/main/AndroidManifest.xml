@@ -10,7 +10,7 @@
         android:label="learning_native_device_features"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyBw4q8iuf1-GUc899w7QU4E3zlWsU57uaM"/>
+                   android:value="ENTER_API_KEY_HERE"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
