@@ -1,4 +1,4 @@
-package com.exercise_1;
+package arrays.exercise_1;
 
 public class FunChallenge {
 

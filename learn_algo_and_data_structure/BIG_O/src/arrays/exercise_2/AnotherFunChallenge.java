@@ -1,4 +1,4 @@
-package com.exercise_2;
+package arrays.exercise_2;
 
 public class AnotherFunChallenge {
 

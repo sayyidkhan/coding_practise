@@ -1,4 +1,4 @@
-package com.arrays;
+package arrays.arrays;
 
 public class AndreiReverseAString {
 
