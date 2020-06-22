@@ -1,6 +1,5 @@
-package hashtable;
+package hashtable.buildOwnHashTable;
 
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class AndreiMain {

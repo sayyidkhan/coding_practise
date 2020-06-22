@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.buildOwnHashTable;
 
 public class Main {
 
