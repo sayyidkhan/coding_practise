@@ -1,6 +1,6 @@
-package linkedlist;
+package linkedlist.single;
 
-public class LinkedList {
+public class SingleLinkedList {
 
     public static void main(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList(10);
@@ -158,7 +158,6 @@ class Node {
 
     @Override
     public String toString() {
-
         return String.format("{value: %s, next: %s}",value.toString(),next != null ? next.toString() : "null");
     }
 }
