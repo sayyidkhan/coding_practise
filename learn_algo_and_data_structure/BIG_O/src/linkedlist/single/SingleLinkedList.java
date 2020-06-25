@@ -7,15 +7,26 @@ public class SingleLinkedList {
         myLinkedList.append(1);
         myLinkedList.append(2);
 
-        myLinkedList.preprend(3);
-        myLinkedList.insert(2,22);
-        
-        myLinkedList.removeIndex(1);
-        myLinkedList.removeTail();
-        myLinkedList.removeTail();
-
+        System.out.println("normal");
         myLinkedList.printLinkedList();
-        System.out.println(myLinkedList.toString());
+
+        System.out.println();
+
+        System.out.println("reversed");
+        myLinkedList.reverseTimeAndSpaceOptimised();
+        myLinkedList.printLinkedList();
+
+        //expected result
+//        normal
+//        10
+//        1
+//        2
+//
+//        reversed
+//        2
+//        1
+//        10
+
     }
 
 }
@@ -116,6 +127,64 @@ class MyLinkedList {
             counter++;
         }
         return node;
+    }
+
+    public void reverse(){
+        if(this.length <= 1){
+            System.out.println("nothing to reverse");
+        }
+        else{
+            MyLinkedList reverseList = new MyLinkedList(this.head.getValue()); // O(1)
+
+            Node currentNode = this.head;
+            while(currentNode.getNext() != null){ // O(n)
+                currentNode = currentNode.getNext(); // O(1)
+                reverseList.preprend(currentNode.getValue()); // O(1)
+            }
+
+            this.head = reverseList.head; // O(1)
+            this.tail = reverseList.tail; // O(1)
+            this.length = reverseList.length; // O(1)
+            //O(n) operation
+        }
+    }
+
+    public void reverseTimeAndSpaceOptimised(){
+        if(this.length <= 1){
+            System.out.println("nothing to reverse");
+        }
+        else{
+             Node prev = null;
+             Node current = this.head;
+             Node next = null;
+             while (current != null){
+                 //1. get the nextNode from the currentNode
+                 //we have to grab it first because in the next step
+                 // we are going to lose the pointer
+
+                 next = current.getNext();
+                 //2. set the currentNode to the previousNode
+                 //we are basically now connecting the node in reverse
+
+                 current.setNext(prev);
+                 //3. move the current in the previousNode
+                 //now the currentNode have served its purpose,
+                 // and we move it into the previous,
+                 // to be assigned as a previous node in the next iteration
+
+                 prev = current;
+                 //4. move the next into the current so
+                 // that the loop can keep on iterating
+                 //we need to continue iterating, by assigning next
+                 // to current the loop can continue to iterate
+
+                 current = next;
+             }
+             //5. assign the head to the tail
+             this.tail = this.head;
+             //6. assign the end of the linkedlist to the head
+             this.head = prev;
+        }
     }
 
     @Override
