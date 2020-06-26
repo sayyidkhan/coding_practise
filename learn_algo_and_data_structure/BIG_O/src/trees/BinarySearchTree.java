@@ -17,6 +17,8 @@ public class BinarySearchTree {
         bst.insert(15);
         bst.insert(170);
 
+        bst.remove(170);
+
         bst.printTree();
     }
 
@@ -26,7 +28,7 @@ public class BinarySearchTree {
 
 //     9
 //  4     20
-//1  6  15  170
+//1  6  15
 
 class BST {
     BSTNode bstNode;
@@ -45,7 +47,7 @@ class BST {
         }
         else{
             BSTNode currentNode = this.bstNode;
-            BSTNode newNode= new BSTNode(value);
+            BSTNode newNode = new BSTNode(value);
             while(true){
                 String validate = currentNode.getValue() > newNode.getValue() ? "left" : "right";
                 BSTNode bottomNode = validate == "left" ? currentNode.getLeft() : currentNode.getRight();
@@ -66,11 +68,119 @@ class BST {
                 }
 
             }
-
         }
     }
 
-    public void lookUp() {
+    public boolean lookup(int value){
+        return lookUpBstNode(value) != null;
+    }
+
+    private BSTNode lookUpBstNode(int value) {
+        if(this.bstNode == null){
+            System.out.println("the binary search tree is empty");
+            return null;
+        }
+        else{
+            BSTNode currentNode = this.bstNode;
+            while (currentNode != null){
+                //check the current node, if the value exist
+                if(value == currentNode.getValue()){
+                    //if manage to find, return true
+                    return currentNode;
+                }
+
+                //value is less < go left
+                if(value < currentNode.getValue()){
+                    currentNode = currentNode.getLeft() == null ? null : currentNode.getLeft();
+                }
+                //value is more > go right
+                else{
+                    currentNode = currentNode.getRight() == null ? null : currentNode.getRight();
+                }
+            }
+            return null;
+        }
+    }
+
+    public boolean remove(int value){
+        if (this.bstNode == null) {
+            return false;
+        }
+        BSTNode currentNode = this.bstNode;
+        BSTNode parentNode = null;
+        while(currentNode != null){
+            if(value < currentNode.getValue()){
+                parentNode = currentNode;
+                currentNode = currentNode.getLeft();
+            } else if(value > currentNode.getValue()){
+                parentNode = currentNode;
+                currentNode = currentNode.getRight();
+            } else if (currentNode.getValue() == value) {
+                //We have a match, get to work!
+
+                //Option 1: No right child:
+                if (currentNode.getRight() == null) {
+                    if (parentNode == null) {
+                        this.bstNode = currentNode.getLeft();
+                    } else {
+
+                        //if parent > current value, make current left child a child of parent
+                        if(currentNode.getValue() < parentNode.getValue()) {
+                            parentNode.setLeft(currentNode.getLeft());
+
+                            //if parent < current value, make left child a right child of parent
+                        } else if(currentNode.getValue() > parentNode.getValue()) {
+                            parentNode.setRight(currentNode.getLeft());
+                        }
+                    }
+
+                    //Option 2: Right child which doesnt have a left child
+                } else if (currentNode.getRight().getLeft() == null) {
+                    currentNode.getRight().setLeft(currentNode.getLeft());
+                    if(parentNode == null) {
+                        this.bstNode = currentNode.getRight();
+                    } else {
+
+                        //if parent > current, make right child of the left the parent
+                        if(currentNode.getValue() < parentNode.getValue()) {
+                            parentNode.setLeft(currentNode.getRight());
+
+                            //if parent < current, make right child a right child of the parent
+                        } else if (currentNode.getValue() > parentNode.getValue()) {
+                            parentNode.setRight(currentNode.getRight());
+                        }
+                    }
+
+                    //Option 3: Right child that has a left child
+                } else {
+
+                    //find the Right child's left most child
+                    BSTNode leftmost = currentNode.getRight().getLeft();
+                    BSTNode leftmostParent = currentNode.getRight();
+                    while(leftmost.getLeft() != null) {
+                        leftmostParent = leftmost;
+                        leftmost = leftmost.getLeft();
+                    }
+
+                    //Parent's left subtree is now leftmost's right subtree
+                    leftmostParent.setLeft(leftmost.getRight());
+                    leftmost.setLeft(currentNode.getLeft());
+                    leftmost.setRight(currentNode.getRight());
+
+                    if(parentNode == null) {
+                        this.bstNode = leftmost;
+                    } else {
+                        if(currentNode.getValue() < parentNode.getValue()) {
+                            parentNode.setLeft(leftmost);
+                        } else if(currentNode.getValue() > parentNode.getValue()) {
+                            parentNode.setRight(leftmost);
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public void printTree(){
