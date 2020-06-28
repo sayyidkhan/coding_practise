@@ -1,7 +1,6 @@
 package algorithms.sorting;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class bubbleSort {
 
@@ -9,31 +8,30 @@ public class bubbleSort {
         int[] numbers = {99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0};
         int[] numbers2 = {99, 44, 6,33};
 
-        bubbleSort(numbers);
+        bubbleSortAndrei(numbers2);
     }
 
-    public static void bubbleSort(int[] intArray){
+    public static void bubbleSortAndrei(int[] intArray){
         int maxCounter = 0;
-        int counter = 0;
-        for(int i = 0;i < intArray.length - 1;i++){
-            maxCounter++;
-            //perform the sort
-            int num1 = intArray[i];
-            int num2 = intArray[i + 1];
-            if(num1 > num2){
-                intArray[i] = num2;
-                intArray[i + 1] = num1;
-                counter++;
-            }
+        int arrayLength = intArray.length;
+        for(int i = 0;i < arrayLength - 1;i++){
+            for(int j = 0;j < arrayLength - 1;j++){
+                maxCounter++;
 
-            if(i == intArray.length - 2 && counter > 0){
-                i = -1;
-                counter = 0;
+                int num1 = intArray[j];
+                int num2 = intArray[j+1];
+                if(num1 > num2){
+                    //swap numbers
+                    int temp = intArray[j];
+                    intArray[j] = intArray[j+1];
+                    intArray[j+1] = temp;
+                }
             }
         }
 
         System.out.println("max iterations: " + maxCounter);
-        System.out.println(Arrays.toString(intArray));
+        System.out.println(Arrays.asList(intArray));
     }
+
 
 }
